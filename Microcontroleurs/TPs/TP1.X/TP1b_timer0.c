@@ -6,8 +6,7 @@
  D5-8 - PORTD 0x0F 
  */
 
-void delai_approx(int);
-void delai_timer0_500milSec(void);
+void delai_timer0(void);
 
 void main(void) {
     //Set LED 1-8 to output
@@ -26,12 +25,6 @@ void main(void) {
         //Wait ~ 500 millisecond
         delai_timer0(500);
     }
-}
-
-//Wait ~ x millisecond
-void delai_approx(int milSec) {
-    for(int i=0; i<milSec; i++)
-        __delay_ms(1);
 }
 
 //Wait ~ x millisecond
