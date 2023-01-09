@@ -10,7 +10,6 @@ void delai_approx(int);
 void delai_timer0_500milSec(void);
 
 void main(void) {
-    /* Code d'initialisation */
     //Set LED 1-8 to output
     TRISB &= ~0x0F;
     TRISD &= ~0x0F;
@@ -19,37 +18,39 @@ void main(void) {
         //Turn on Led D1-4, turn off led D5-8
         LATB |= 0x0F;
         LATD &= ~0x0F;
-        //Wait ~ one second
-        delai_timer0_500milSec();
+        //Wait ~ 500 millisecond
+        delai_timer0(500);
         //Turn off Led D1-4, turn on led D5-8
         LATB &= ~0x0F;
         LATD |= 0x0F;
-        //Wait ~ one second
-        delai_timer0_500milSec();
-        /* Code a executer dans une boucle infinie */
+        //Wait ~ 500 millisecond
+        delai_timer0(500);
     }
 }
 
-//Wait ~ x millisecondes
+//Wait ~ x millisecond
 void delai_approx(int milSec) {
     for(int i=0; i<milSec; i++)
         __delay_ms(1);
 }
 
-void delai_timer0_500milSec(void) {
-    //Set Prescaler to 16
+//Wait ~ x millisecond
+void delai_timer0(int milsecond) {
+    //Set Prescaler to 8   
     //Fclk to 2MHz
-    //Set TMR0 to 56
-    // 1 / ( ( 256 - TMR0 ) * ( Prescaler / Fclk ) ) = 625 
+    //Set TMR0 to 6
+    //Setup to wait 1 millisecond
     
-    //OPTION REG PSA to 1, TMR0CS to 0
+    //Prescaler to 8
+    OPTION_REG |= 0x02;
+    //OPTION REG PSA to 0, TMR0CS to 0
+    OPTION_REG &= ~0x28;
     
-    OPTION_REG |= 0x0A;
-    OPTION_REG &= ~0x20;
-        
-    for(int i = 0; i<625; i++)
+    for(int i = 0; i<milsecond; i++)
     {
-        TMR0 = 0x38;
+        //Set TMR0 to 6
+        TMR0 = 6;
+        //Set Flag to 0
         INTCON &= ~0x04;
         while(!(INTCON & 0x04)){}
     }
