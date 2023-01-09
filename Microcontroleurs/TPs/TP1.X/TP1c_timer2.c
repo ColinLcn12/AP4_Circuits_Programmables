@@ -6,45 +6,67 @@
  D5-8 - PORTD 0x0F 
  */
 
-void delai_timer0(void);
+void delai_timer2(void);
 
 void main(void) {
     //Set LED 1-8 to output
     TRISB &= ~0x0F;
     TRISD &= ~0x0F;
     
+    //Default config turn off all LEDs except D1
+    LATB |= 0x01;
+    LATB &= ~0x0E;
+    LATD &= ~0x0F;
+    
     while(1){
-        //Turn on Led D1-4, turn off led D5-8
-        LATB |= 0x0F;
-        LATD &= ~0x0F;
-        //Wait ~ 500 millisecond
-        delai_timer0(500);
-        //Turn off Led D1-4, turn on led D5-8
-        LATB &= ~0x0F;
-        LATD |= 0x0F;
-        //Wait ~ 500 millisecond
-        delai_timer0(500);
+        //Wait 125 ms
+        delai_timer2(125);
+        
+        //If D4
+        if(LATB & 0x0F == 0x08)
+        {
+            LATB &= ~0x0F;
+            LATD |= 0x01;
+        }
+        //If D8
+        else if(LATD & 0x0F == 0x08)
+        {
+            LATD &= ~0x0F;
+            LATB |= 0x01;
+        }
+        //If D1-3
+        else if(LATD & 0x0F == 0x00)
+            LATB = LATB << 1;
+        //IF D5-7
+        else
+            LATD = LATD << 1;
     }
 }
 
 //Wait ~ x millisecond
-void delai_timer0(int milsecond) {
-    //Set Prescaler to 8   
-    //Fclk to 2MHz
-    //Set TMR0 to 6
-    //Setup to wait 1 millisecond
+void delai_timer2(int milsecond) {
+    /*1 milliSecond	per flag with setup :	
+        PR2	124
+        pre	16
+        post 1
+     8 steps needed -> 125 loop each
+     */
     
-    //Prescaler to 8
-    OPTION_REG |= 0x02;
-    //OPTION REG PSA to 0, TMR0CS to 0
-    OPTION_REG &= ~0x28;
+    //Set postscaller to 1
+    T2CON &= ~0x78;
     
-    for(int i = 0; i<milsecond; i++)
+    //Set prescaller to 16
+    T2CON |= 0x02;
+    
+    //Enable timer 2
+    T2CON |= 0x04;
+    
+    for(int i = 0; i< milsecond; i++)
     {
-        //Set TMR0 to 6
-        TMR0 = 6;
+        //Set PR2 to 124
+        PR2 = 124;
         //Set Flag to 0
-        INTCON &= ~0x04;
-        while(!(INTCON & 0x04)){}
+        PIR1 &= ~0x02;
+        while(!(PIR1 & 0x02)){}
     }
 }

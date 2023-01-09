@@ -27,8 +27,13 @@
             </formatting>
         </data>
         <spellchecker-wordlist xmlns="http://www.netbeans.org/ns/spellchecker-wordlist/1">
+            <word>config</word>
             <word>Fclk</word>
+            <word>leds</word>
+            <word>ms</word>
+            <word>postscaller</word>
             <word>Prescaler</word>
+            <word>prescaller</word>
         </spellchecker-wordlist>
     </configuration>
 </project>
