@@ -51,17 +51,17 @@ OBJECTDIR=build/${CND_CONF}/${IMAGE_TYPE}
 DISTDIR=dist/${CND_CONF}/${IMAGE_TYPE}
 
 # Source Files Quoted if spaced
-SOURCEFILES_QUOTED_IF_SPACED=TP1b_timer0.c TP1a_helloworld.c TP1c_timer2.c
+SOURCEFILES_QUOTED_IF_SPACED=TP1d_interrupt2.c
 
 # Object Files Quoted if spaced
-OBJECTFILES_QUOTED_IF_SPACED=${OBJECTDIR}/TP1b_timer0.p1 ${OBJECTDIR}/TP1a_helloworld.p1 ${OBJECTDIR}/TP1c_timer2.p1
-POSSIBLE_DEPFILES=${OBJECTDIR}/TP1b_timer0.p1.d ${OBJECTDIR}/TP1a_helloworld.p1.d ${OBJECTDIR}/TP1c_timer2.p1.d
+OBJECTFILES_QUOTED_IF_SPACED=${OBJECTDIR}/TP1d_interrupt2.p1
+POSSIBLE_DEPFILES=${OBJECTDIR}/TP1d_interrupt2.p1.d
 
 # Object Files
-OBJECTFILES=${OBJECTDIR}/TP1b_timer0.p1 ${OBJECTDIR}/TP1a_helloworld.p1 ${OBJECTDIR}/TP1c_timer2.p1
+OBJECTFILES=${OBJECTDIR}/TP1d_interrupt2.p1
 
 # Source Files
-SOURCEFILES=TP1b_timer0.c TP1a_helloworld.c TP1c_timer2.c
+SOURCEFILES=TP1d_interrupt2.c
 
 
 
@@ -88,54 +88,22 @@ MP_PROCESSOR_OPTION=16F1719
 # ------------------------------------------------------------------------------------
 # Rules for buildStep: compile
 ifeq ($(TYPE_IMAGE), DEBUG_RUN)
-${OBJECTDIR}/TP1b_timer0.p1: TP1b_timer0.c  nbproject/Makefile-${CND_CONF}.mk 
+${OBJECTDIR}/TP1d_interrupt2.p1: TP1d_interrupt2.c  nbproject/Makefile-${CND_CONF}.mk 
 	@${MKDIR} "${OBJECTDIR}" 
-	@${RM} ${OBJECTDIR}/TP1b_timer0.p1.d 
-	@${RM} ${OBJECTDIR}/TP1b_timer0.p1 
-	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -D__DEBUG=1  -mdebugger=pickit3   -mdfp="${DFP_DIR}/xc8"  -fno-short-double -fno-short-float -O0 -fasmfile -maddrqual=ignore -xassembler-with-cpp -mwarn=-3 -Wa,-a -DXPRJ_default=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file  -ginhx32 -Wl,--data-init -mno-keep-startup -mno-osccal -mno-resetbits -mno-save-resetbits -mno-download -mno-stackcall -mdefault-config-bits $(COMPARISON_BUILD)  -std=c99 -gdwarf-3 -mstack=compiled:auto:auto     -o ${OBJECTDIR}/TP1b_timer0.p1 TP1b_timer0.c 
-	@-${MV} ${OBJECTDIR}/TP1b_timer0.d ${OBJECTDIR}/TP1b_timer0.p1.d 
-	@${FIXDEPS} ${OBJECTDIR}/TP1b_timer0.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
-	
-${OBJECTDIR}/TP1a_helloworld.p1: TP1a_helloworld.c  nbproject/Makefile-${CND_CONF}.mk 
-	@${MKDIR} "${OBJECTDIR}" 
-	@${RM} ${OBJECTDIR}/TP1a_helloworld.p1.d 
-	@${RM} ${OBJECTDIR}/TP1a_helloworld.p1 
-	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -D__DEBUG=1  -mdebugger=pickit3   -mdfp="${DFP_DIR}/xc8"  -fno-short-double -fno-short-float -O0 -fasmfile -maddrqual=ignore -xassembler-with-cpp -mwarn=-3 -Wa,-a -DXPRJ_default=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file  -ginhx32 -Wl,--data-init -mno-keep-startup -mno-osccal -mno-resetbits -mno-save-resetbits -mno-download -mno-stackcall -mdefault-config-bits $(COMPARISON_BUILD)  -std=c99 -gdwarf-3 -mstack=compiled:auto:auto     -o ${OBJECTDIR}/TP1a_helloworld.p1 TP1a_helloworld.c 
-	@-${MV} ${OBJECTDIR}/TP1a_helloworld.d ${OBJECTDIR}/TP1a_helloworld.p1.d 
-	@${FIXDEPS} ${OBJECTDIR}/TP1a_helloworld.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
-	
-${OBJECTDIR}/TP1c_timer2.p1: TP1c_timer2.c  nbproject/Makefile-${CND_CONF}.mk 
-	@${MKDIR} "${OBJECTDIR}" 
-	@${RM} ${OBJECTDIR}/TP1c_timer2.p1.d 
-	@${RM} ${OBJECTDIR}/TP1c_timer2.p1 
-	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -D__DEBUG=1  -mdebugger=pickit3   -mdfp="${DFP_DIR}/xc8"  -fno-short-double -fno-short-float -O0 -fasmfile -maddrqual=ignore -xassembler-with-cpp -mwarn=-3 -Wa,-a -DXPRJ_default=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file  -ginhx32 -Wl,--data-init -mno-keep-startup -mno-osccal -mno-resetbits -mno-save-resetbits -mno-download -mno-stackcall -mdefault-config-bits $(COMPARISON_BUILD)  -std=c99 -gdwarf-3 -mstack=compiled:auto:auto     -o ${OBJECTDIR}/TP1c_timer2.p1 TP1c_timer2.c 
-	@-${MV} ${OBJECTDIR}/TP1c_timer2.d ${OBJECTDIR}/TP1c_timer2.p1.d 
-	@${FIXDEPS} ${OBJECTDIR}/TP1c_timer2.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
+	@${RM} ${OBJECTDIR}/TP1d_interrupt2.p1.d 
+	@${RM} ${OBJECTDIR}/TP1d_interrupt2.p1 
+	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -D__DEBUG=1  -mdebugger=pickit3   -mdfp="${DFP_DIR}/xc8"  -fno-short-double -fno-short-float -O0 -fasmfile -maddrqual=ignore -xassembler-with-cpp -mwarn=-3 -Wa,-a -DXPRJ_default=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file  -ginhx32 -Wl,--data-init -mno-keep-startup -mno-osccal -mno-resetbits -mno-save-resetbits -mno-download -mno-stackcall -mdefault-config-bits $(COMPARISON_BUILD)  -std=c99 -gdwarf-3 -mstack=compiled:auto:auto     -o ${OBJECTDIR}/TP1d_interrupt2.p1 TP1d_interrupt2.c 
+	@-${MV} ${OBJECTDIR}/TP1d_interrupt2.d ${OBJECTDIR}/TP1d_interrupt2.p1.d 
+	@${FIXDEPS} ${OBJECTDIR}/TP1d_interrupt2.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
 	
 else
-${OBJECTDIR}/TP1b_timer0.p1: TP1b_timer0.c  nbproject/Makefile-${CND_CONF}.mk 
+${OBJECTDIR}/TP1d_interrupt2.p1: TP1d_interrupt2.c  nbproject/Makefile-${CND_CONF}.mk 
 	@${MKDIR} "${OBJECTDIR}" 
-	@${RM} ${OBJECTDIR}/TP1b_timer0.p1.d 
-	@${RM} ${OBJECTDIR}/TP1b_timer0.p1 
-	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c   -mdfp="${DFP_DIR}/xc8"  -fno-short-double -fno-short-float -O0 -fasmfile -maddrqual=ignore -xassembler-with-cpp -mwarn=-3 -Wa,-a -DXPRJ_default=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file  -ginhx32 -Wl,--data-init -mno-keep-startup -mno-osccal -mno-resetbits -mno-save-resetbits -mno-download -mno-stackcall -mdefault-config-bits $(COMPARISON_BUILD)  -std=c99 -gdwarf-3 -mstack=compiled:auto:auto     -o ${OBJECTDIR}/TP1b_timer0.p1 TP1b_timer0.c 
-	@-${MV} ${OBJECTDIR}/TP1b_timer0.d ${OBJECTDIR}/TP1b_timer0.p1.d 
-	@${FIXDEPS} ${OBJECTDIR}/TP1b_timer0.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
-	
-${OBJECTDIR}/TP1a_helloworld.p1: TP1a_helloworld.c  nbproject/Makefile-${CND_CONF}.mk 
-	@${MKDIR} "${OBJECTDIR}" 
-	@${RM} ${OBJECTDIR}/TP1a_helloworld.p1.d 
-	@${RM} ${OBJECTDIR}/TP1a_helloworld.p1 
-	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c   -mdfp="${DFP_DIR}/xc8"  -fno-short-double -fno-short-float -O0 -fasmfile -maddrqual=ignore -xassembler-with-cpp -mwarn=-3 -Wa,-a -DXPRJ_default=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file  -ginhx32 -Wl,--data-init -mno-keep-startup -mno-osccal -mno-resetbits -mno-save-resetbits -mno-download -mno-stackcall -mdefault-config-bits $(COMPARISON_BUILD)  -std=c99 -gdwarf-3 -mstack=compiled:auto:auto     -o ${OBJECTDIR}/TP1a_helloworld.p1 TP1a_helloworld.c 
-	@-${MV} ${OBJECTDIR}/TP1a_helloworld.d ${OBJECTDIR}/TP1a_helloworld.p1.d 
-	@${FIXDEPS} ${OBJECTDIR}/TP1a_helloworld.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
-	
-${OBJECTDIR}/TP1c_timer2.p1: TP1c_timer2.c  nbproject/Makefile-${CND_CONF}.mk 
-	@${MKDIR} "${OBJECTDIR}" 
-	@${RM} ${OBJECTDIR}/TP1c_timer2.p1.d 
-	@${RM} ${OBJECTDIR}/TP1c_timer2.p1 
-	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c   -mdfp="${DFP_DIR}/xc8"  -fno-short-double -fno-short-float -O0 -fasmfile -maddrqual=ignore -xassembler-with-cpp -mwarn=-3 -Wa,-a -DXPRJ_default=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file  -ginhx32 -Wl,--data-init -mno-keep-startup -mno-osccal -mno-resetbits -mno-save-resetbits -mno-download -mno-stackcall -mdefault-config-bits $(COMPARISON_BUILD)  -std=c99 -gdwarf-3 -mstack=compiled:auto:auto     -o ${OBJECTDIR}/TP1c_timer2.p1 TP1c_timer2.c 
-	@-${MV} ${OBJECTDIR}/TP1c_timer2.d ${OBJECTDIR}/TP1c_timer2.p1.d 
-	@${FIXDEPS} ${OBJECTDIR}/TP1c_timer2.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
+	@${RM} ${OBJECTDIR}/TP1d_interrupt2.p1.d 
+	@${RM} ${OBJECTDIR}/TP1d_interrupt2.p1 
+	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c   -mdfp="${DFP_DIR}/xc8"  -fno-short-double -fno-short-float -O0 -fasmfile -maddrqual=ignore -xassembler-with-cpp -mwarn=-3 -Wa,-a -DXPRJ_default=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file  -ginhx32 -Wl,--data-init -mno-keep-startup -mno-osccal -mno-resetbits -mno-save-resetbits -mno-download -mno-stackcall -mdefault-config-bits $(COMPARISON_BUILD)  -std=c99 -gdwarf-3 -mstack=compiled:auto:auto     -o ${OBJECTDIR}/TP1d_interrupt2.p1 TP1d_interrupt2.c 
+	@-${MV} ${OBJECTDIR}/TP1d_interrupt2.d ${OBJECTDIR}/TP1d_interrupt2.p1.d 
+	@${FIXDEPS} ${OBJECTDIR}/TP1d_interrupt2.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
 	
 endif
 

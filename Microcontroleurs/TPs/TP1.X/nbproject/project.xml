@@ -15,6 +15,7 @@
             <sourceRootList>
                 <sourceRootElem>../../../../Users/gautm/Downloads/code_tp1</sourceRootElem>
                 <sourceRootElem>../Ressources</sourceRootElem>
+                <sourceRootElem>.</sourceRootElem>
             </sourceRootList>
             <confList>
                 <confElem>
@@ -31,6 +32,7 @@
             <word>Fclk</word>
             <word>leds</word>
             <word>ms</word>
+            <word>Postscaler</word>
             <word>postscaller</word>
             <word>Prescaler</word>
             <word>prescaller</word>

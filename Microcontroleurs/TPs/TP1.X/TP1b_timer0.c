@@ -6,7 +6,7 @@
  D5-8 - PORTD 0x0F 
  */
 
-void delai_timer0(void);
+void delai_timer0(int);
 
 void main(void) {
     //Set LED 1-8 to output
@@ -31,7 +31,7 @@ void main(void) {
 void delai_timer0(int milsecond) {
     //Set Prescaler to 8   
     //Fclk to 2MHz
-    //Set TMR0 to 6
+    //Set TMR0 to 250
     //Setup to wait 1 millisecond
     
     //Prescaler to 8
@@ -42,7 +42,7 @@ void delai_timer0(int milsecond) {
     for(int i = 0; i<milsecond; i++)
     {
         //Set TMR0 to 6
-        TMR0 = 6;
+        TMR0 = 250;
         //Set Flag to 0
         INTCON &= ~0x04;
         while(!(INTCON & 0x04)){}

@@ -6,7 +6,7 @@
  D5-8 - PORTD 0x0F 
  */
 
-void delai_timer2(void);
+void delai_timer2(int);
 
 void main(void) {
     //Set LED 1-8 to output
@@ -14,33 +14,33 @@ void main(void) {
     TRISD &= ~0x0F;
     
     //Default config turn off all LEDs except D1
-    LATB |= 0x01;
-    LATB &= ~0x0E;
-    LATD &= ~0x0F;
+    LATD |= 0x01;
+    LATD &= ~0x0E;
+    LATB &= ~0x0F;
     
     while(1){
         //Wait 125 ms
         delai_timer2(125);
         
         //If D4
-        if(LATB & 0x0F == 0x08)
+        if((LATB & 0x0F) == 0x08)
         {
             LATB &= ~0x0F;
             LATD |= 0x01;
         }
         //If D8
-        else if(LATD & 0x0F == 0x08)
+        else if((LATD & 0x0F) == 0x08)
         {
             LATD &= ~0x0F;
             LATB |= 0x01;
         }
         //If D1-3
-        else if(LATD & 0x0F == 0x00)
-            LATB = LATB << 1;
+        else if((LATD & 0x0F) == 0x00)
+            LATB += (LATB & 0x0F);
         //IF D5-7
-        else
-            LATD = LATD << 1;
-    }
+        else if((LATB & 0x0F) == 0x00)
+            LATD += (LATD & 0x0F);
+        }
 }
 
 //Wait ~ x millisecond
@@ -55,11 +55,8 @@ void delai_timer2(int milsecond) {
     //Set postscaller to 1
     T2CON &= ~0x78;
     
-    //Set prescaller to 16
-    T2CON |= 0x02;
-    
-    //Enable timer 2
-    T2CON |= 0x04;
+    //Set prescaller to 16 and enable timer 2
+    T2CON |= 0x06;
     
     for(int i = 0; i< milsecond; i++)
     {
