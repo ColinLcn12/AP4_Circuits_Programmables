@@ -198,7 +198,7 @@
         <XC8-config-global>
         </XC8-config-global>
       </item>
-      <item path="TP1d_interrupt2.c" ex="true" overriding="false">
+      <item path="TP1d_interrupt2.c" ex="false" overriding="false">
         <HI-TECH-COMP>
         </HI-TECH-COMP>
         <HI-TECH-LINK>
@@ -209,6 +209,16 @@
         </XC8-config-global>
       </item>
       <item path="TP1e_bonus1.c" ex="true" overriding="false">
+        <HI-TECH-COMP>
+        </HI-TECH-COMP>
+        <HI-TECH-LINK>
+        </HI-TECH-LINK>
+        <XC8-CO>
+        </XC8-CO>
+        <XC8-config-global>
+        </XC8-config-global>
+      </item>
+      <item path="TP1e_bonus2.c" ex="true" overriding="false">
       </item>
       <Tool>
         <property key="firmware.download.all" value="false"/>
