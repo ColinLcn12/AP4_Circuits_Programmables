@@ -8,6 +8,7 @@
 
 void __interrupt() isr (void);
 int count = 0;
+int blockRes = 0;
 
 void main(void) {
     /*
@@ -19,6 +20,9 @@ void main(void) {
     //Set LED 1-8 to output
     TRISB &= ~0x0F;
     TRISD &= ~0x0F;
+    
+    //Set button as input
+    TRISA |= 0x20;
    
     //Set prescaller to 16 and enable timer and postscaler 1
     T2CON |= 0x06;
@@ -41,29 +45,41 @@ void main(void) {
 }
 
 void __interrupt() isr (void) {
-    if(count == 125)
+    if(blockRes == 0)
     {
-    //If D4
-    if((LATB & 0x0F) == 0x08)
+        if(count == 125)
+        {
+        //If D4
+        if((LATB & 0x0F) == 0x08)
+        {
+            LATB &= ~0x0F;
+            LATD |= 0x01;
+        }
+        //If D8
+        else if((LATD & 0x0F) == 0x08)
+        {
+            LATD &= ~0x0F;
+            LATB |= 0x01;
+        }
+        //If D1-3
+        else if((LATD & 0x0F) == 0x00)
+            LATB += (LATB & 0x0F);
+        //IF D5-7
+        else if((LATB & 0x0F) == 0x00)
+            LATD += (LATD & 0x0F); 
+        count = 0;
+        }
+        else
+            count+=1;
+        PIR1 &= ~0x02;
+    }
+    if((INTCON & 0x01) == 0x01)
     {
-        LATB &= ~0x0F;
-        LATD |= 0x01;
+        if(blockeRes == 0)
+            blockRes =1;
+        else
+            blockRes =0;
+        LATD |= 0x0F;
+        LATB |= 0x0F;
     }
-    //If D8
-    else if((LATD & 0x0F) == 0x08)
-    {
-        LATD &= ~0x0F;
-        LATB |= 0x01;
-    }
-    //If D1-3
-    else if((LATD & 0x0F) == 0x00)
-        LATB += (LATB & 0x0F);
-    //IF D5-7
-    else if((LATB & 0x0F) == 0x00)
-        LATD += (LATD & 0x0F); 
-    count = 0;
-    }
-    else
-        count+=1;
-    PIR1 &= ~0x02;
 }
