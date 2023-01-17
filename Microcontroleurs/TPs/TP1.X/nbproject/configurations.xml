@@ -19,6 +19,7 @@
       <itemPath>TP1d_interrupt2.c</itemPath>
       <itemPath>TP1d_interrupt.c</itemPath>
       <itemPath>TP1e_bonus1.c</itemPath>
+      <itemPath>TP1e_bonus2.c</itemPath>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
                    displayName="Important Files"
@@ -206,6 +207,8 @@
         </XC8-CO>
         <XC8-config-global>
         </XC8-config-global>
+      </item>
+      <item path="TP1e_bonus1.c" ex="true" overriding="false">
       </item>
       <Tool>
         <property key="firmware.download.all" value="false"/>
