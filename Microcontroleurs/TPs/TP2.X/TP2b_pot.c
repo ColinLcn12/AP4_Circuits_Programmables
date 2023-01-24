@@ -25,6 +25,8 @@ void main(void) {
     //Wait 1 ms for acquisition time
     delai_approx(1);
     resetInterrupt();
+    
+    while(1) {}
 }
 
 void setupLeds(void) {
