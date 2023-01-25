@@ -28,7 +28,8 @@ void main(void) {
 
 void setupLeds(void) {
     //Set led 0 input
-    TRISD &= ~0x01;
+    TRISD &= ~0x0F;
+    TRISB &= ~0x0F;
 }
 
 void configTimer2Interrup(void) {
@@ -54,12 +55,19 @@ void timer2() {
     PIR1 &= ~0x02;
     
     //Set timer2 PR2
-    PR2 = 124;
+    PR2 = 249;
 }
 
 void setPWMLed0() {
     //Set led for PWM
     RD0PPS = 0x0F;
+    RD1PPS = 0x0F;
+    RD2PPS = 0x0F;
+    RD3PPS = 0x0F;
+    RB0PPS = 0x0F;
+    RB1PPS = 0x0F;
+    RB2PPS = 0x0F;
+    RB3PPS = 0x0F;
     
     //Enable PWM
     PWM4CON = 0x80;
@@ -78,21 +86,21 @@ void __interrupt() isr (void) {
             inc = 1;
         
         if(inc)
-            if(PWM4DCL & 0xC0)
+            if(PWM4DCL & 0x80)
             {
                 PWM4DCL &= ~0xC0;
                 PWM4DCH++;
             }
             else
-                PWM4DCL+=0x40;
+                PWM4DCL+=0x80;
         else
             if(PWM4DCL == 0)
             {
                 PWM4DCH--;
-                PWM4DCL |= 0xC0;
+                PWM4DCL |= 0x80;
             }
             else
-                PWM4DCL-=0x40;
+                PWM4DCL-=0x80;
         PIR1 &= ~0x02;
     }
 }
