@@ -7,24 +7,21 @@
  */
 
 void __interrupt() isr (void);
+int count = 0;
 
-
-//the loop of leds modification is close to one second but not perfect
 void main(void) {
-    /*Closest setup to 8 loops
-        Prescaler	64
-        Postscaler	16
-        loops: 7.971938776
-        time: 0.12544
-        pr2: 244
+    /*
+        Prescaler	16
+        Postscaler	1
+        PR2 = 124
      */
 
     //Set LED 1-8 to output
     TRISB &= ~0x0F;
     TRISD &= ~0x0F;
 
-    //Set prescaller to 64 and enable timer and postscaler 16
-    T2CON |= 0xEF;
+    //Set prescaller to 16 and enable timer and postscaler 1
+    T2CON |= 0x06;
 
     //Turn off all leds except D0
     LATD |= 0x01;
@@ -37,13 +34,15 @@ void main(void) {
     //Enable timer2 interrupt
     PIE1 |= 0x02;
 
-    PR2 = 244;
+    PR2 = 124;
     PIR1 &= ~0x02;
 
     while(1){ }
 }
 
 void __interrupt() isr (void) {
+    if(count == 125)
+    {
     //If D4
     if((LATB & 0x0F) == 0x08)
     {
@@ -61,6 +60,10 @@ void __interrupt() isr (void) {
         LATB += (LATB & 0x0F);
     //IF D5-7
     else if((LATB & 0x0F) == 0x00)
-        LATD += (LATD & 0x0F);    
+        LATD += (LATD & 0x0F); 
+    count = 0;
+    }
+    else
+        count+=1;
     PIR1 &= ~0x02;
 }
